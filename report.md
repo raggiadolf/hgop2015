@@ -9,4 +9,4 @@ npm er pakka stjóri fyrir javascript. npm auðveldar okkur að deila og endurn�
 ##nodejs
 nodejs gerir okkur kleift að skrifa netþjónustur í JavaScript. nodej er mjög létt í keyrslu og getur samt sem áður séð um mikla umferð á sama tíma.
 ##bower
-bower er pakka stjóri heldur utan um þá pakka sem kerfið okkar þarfnast.
+bower er pakka stjóri sem heldur utan um þá pakka sem kerfið okkar þarfnast.
