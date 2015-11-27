@@ -10,3 +10,5 @@ npm er pakka stjóri fyrir javascript. npm auðveldar okkur að deila og endurn�
 nodejs gerir okkur kleift að skrifa netþjónustur í JavaScript. nodej er mjög létt í keyrslu og getur samt sem áður séð um mikla umferð á sama tíma.
 ##bower
 bower er pakka stjóri sem heldur utan um þá pakka sem kerfið okkar þarfnast.
+##Deployment Topology
+Við erum með tvær separate virtual vélar sem vagrant managear. Önnur vélin er development vélin okkar þar sem við endum á að pakka productinu okkar í docker og pusha henni svo á docker hub. Hin vélin er testing vél sem sækir docker image-ið af docker hub. Við erum með deployment scriptu sem pushar nýjasta docker buildinu af development vélinni okkar, og sækir það image síðan á test vélinni.
