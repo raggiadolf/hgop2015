@@ -1,2 +1,4 @@
+sudo service docker start
 docker push raggiadolf/tictactoe
-ssh vagrant@192.168.1.50 'docker pull raggiadolf/tictactoe'
+echo "Docker image pushed to repo, sending setup script to test machine.\n"
+ssh vagrant@$1 'bash -s' < setuptest.sh
