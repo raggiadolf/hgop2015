@@ -5,7 +5,7 @@ var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 describe('place token command', () => {
   let given, when, then;
 
-  it('should place a legit token on an empty board', () => {
+  beforeEach(() => {
     given = [{
         eventID: "1",
         event: "GameCreated",
@@ -22,7 +22,9 @@ describe('place token command', () => {
         timeStamp: "2015.12.03T12:55:44"
       }
     ];
+  });
 
+  it('should place a legit token on an empty board', () => {
     when = {
       eventID: "3",
       command: "Place",
@@ -51,23 +53,6 @@ describe('place token command', () => {
   });
 
   it('should respond with an error message when trying to place out of bounds', () => {
-    given = [{
-        eventID: "1",
-        event: "GameCreated",
-        userName: "Raggi",
-        gameName: "TestGame",
-        timeStamp: "2015.12.03T12:54:44"
-      },
-      {
-        eventID: "2",
-        event: "GameJoined",
-        userName: "Adolf",
-        otherPlayerUserName: "Raggi",
-        gameName: "TestGame",
-        timeStamp: "2015.12.03T12:55:44"
-      }
-    ];
-
     when = {
       eventID: "3",
       command: "Place",
