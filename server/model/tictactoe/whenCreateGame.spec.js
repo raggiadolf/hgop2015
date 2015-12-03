@@ -1,31 +1,6 @@
 'use strict';
 
-const tictactoeCommandHandler = (events) => {
-  const gameCreatedEvent = events[0];
-
-  return {
-    executeCommand: (command) => {
-      if(command.command === "CreateGame") {
-        return [{
-          eventID: command.eventID,
-          event: "GameCreated",
-          userName: command.userName,
-          timeStamp: command.timeStamp
-        }];
-      }
-
-      if(command.command === "JoinGame") {
-        return [{
-          eventID: command.eventID,
-          event: "GameJoined",
-          userName: command.userName,
-          otherPlayerUserName: gameCreatedEvent.userName,
-          timeStamp: command.timeStamp
-        }];
-      }
-    }
-  };
-};
+var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 
 describe('create game command', () => {
   let given, when, then;
