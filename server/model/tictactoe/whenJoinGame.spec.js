@@ -10,6 +10,7 @@ describe('join game command', () => {
       eventID: "2",
       event: "GameCreated",
       userName: "Raggi",
+      gameName: "TestGame",
       timeStamp: "2015.12.03T13:25:20"
     }];
 
@@ -26,6 +27,7 @@ describe('join game command', () => {
       event: "GameJoined",
       userName: "Adolf",
       otherPlayerUserName: "Raggi",
+      gameName: "TestGame",
       timeStamp: "2015.12.03T13:26:20"
     }];
 

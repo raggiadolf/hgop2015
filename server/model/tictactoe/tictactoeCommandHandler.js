@@ -29,6 +29,7 @@ module.exports = function tictactoeCommandHandler(events) {
         event: "GameJoined",
         userName: command.userName,
         otherPlayerUserName: gameCreatedEvent.userName,
+        gameName: command.gameName,
         timeStamp: command.timeStamp
       }];
     },
