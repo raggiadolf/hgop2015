@@ -17,4 +17,8 @@ Við erum með tvær separate virtual vélar sem vagrant managear. Önnur vélin
 #Dagur 3
 Scriptan sem heldur test vélinni up-to-date við nýjasta docker build löguð. Hún keyrir nú upp ip tölu af parametrum til að geta mögulega endurnýtt þessa scriptu í framtíðinni. Erum búin að setja upp SSH login á test vélina til þess að geta keyrt scriptur inná hana remotely.
 #Dagur 4
-Erum að setja upp Jenkins til að geta látið hann keyra test fyrir okkur og gefa okkur feedback af prófum
+Erum að setja upp Jenkins til að geta látið hann keyra test fyrir okkur og gefa okkur feedback af prófum.
+
+Fékk Jenkins til að keyra upp buildið. Bættum einnig við Jenkins projecti til að pusha nýjasta buildinu á docker, og deploya því á test vélina.
+#Dagur 5
+Kominn með Karma test reports upp, þarf að finna útúr því hvernig ég launcha þeim beint frá jenkins þannig að reportin verði auðsýnileg eftir að jenkins hefur klárað sitt ferli. Næsta skref er að fara að skrifa upp möguleg unit tests með 'event based approach'
