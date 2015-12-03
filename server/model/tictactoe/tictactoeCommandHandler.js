@@ -38,6 +38,19 @@ module.exports = function tictactoeCommandHandler(events) {
     },
 
     "Place": (command) => {
+      if(command.col > 2 || command.row > 2 ) {
+        return [{
+          eventID: command.eventID,
+          event: "IllegalMove",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      }
+
       gameState.board[command.col][command.row] = command.token;
       return [{
         eventID: command.eventID,
