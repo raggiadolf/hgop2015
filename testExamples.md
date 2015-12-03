@@ -4,9 +4,9 @@
 * Then [Placed(0,0,X)]
 
 #### Player won
-* Given [Placed(0,0,X), Placed(0,1,X)]
+* Given [Placed(0,0,X), Placed(1,1,O), Placed(0,1,X), Placed(2,2,O)]
 * When [Place(0,2,X)]
-* Then [X Won]
+* Then [Placed(0,2,X), PlayerXWins]
 
 #### Placed out of bounds
 * Given []
