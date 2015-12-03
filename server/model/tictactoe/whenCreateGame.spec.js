@@ -7,10 +7,10 @@ const tictactoeCommandHandler = (events) => {
     executeCommand: (command) => {
       if(command.command === "CreateGame") {
         return [{
-          eventID: "1",
+          eventID: command.eventID,
           event: "GameCreated",
-          userName: "Raggi",
-          timeStap: "2015.12.03T12:54:44"
+          userName: command.userName,
+          timeStamp: command.timeStamp
         }];
       }
 
@@ -45,7 +45,30 @@ describe('create game command', () => {
       eventID: "1",
       event: "GameCreated",
       userName: "Raggi",
-      timeStap: "2015.12.03T12:54:44"
+      timeStamp: "2015.12.03T12:54:44"
+    }];
+
+    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+    JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+  });
+
+  it('should create a second game with different user and different timestamp', () => {
+    given = [];
+
+    when = {
+      eventID: "4",
+      command: "CreateGame",
+      userName: "Adolf",
+      gameName: "SecondTestGame",
+      timeStamp: "2015.12.03T13:41:10"
+    };
+
+    then = [{
+      eventID: "4",
+      event: "GameCreated",
+      userName: "Adolf",
+      timeStamp: "2015.12.03T13:41:10"
     }];
 
     const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
