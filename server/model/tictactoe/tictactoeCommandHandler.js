@@ -6,6 +6,12 @@ module.exports = function tictactoeCommandHandler(events) {
     board: [['','',''],['','',''],['','','']]
   };
 
+  for(let i = 0; i < events.length; i++) {
+    if(events[i].event === 'Placed') {
+      gameState.board[events[i].col][events[i].row] = events[i].token;
+    }
+  }
+
   const handlers = {
     "CreateGame": (command) => {
       return [{
@@ -38,7 +44,20 @@ module.exports = function tictactoeCommandHandler(events) {
     },
 
     "Place": (command) => {
-      if(command.col > 2 || command.row > 2 ) {
+      if(command.col > 2 || command.row > 2) {
+        return [{
+          eventID: command.eventID,
+          event: "IllegalMove",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      }
+
+      if(gameState.board[command.col][command.row] !== '') {
         return [{
           eventID: command.eventID,
           event: "IllegalMove",
