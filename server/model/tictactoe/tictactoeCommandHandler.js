@@ -42,6 +42,7 @@ module.exports = function tictactoeCommandHandler(events) {
         col: command.col,
         token: command.token,
         userName: command.userName,
+        gameName: command.gameName,
         timeStamp: command.timeStamp
       }];
     }

@@ -10,6 +10,7 @@ describe('place token command', () => {
         eventID: "1",
         event: "GameCreated",
         userName: "Raggi",
+        gameName: "TestGame",
         timeStamp: "2015.12.03T12:54:44"
       },
       {
@@ -17,6 +18,7 @@ describe('place token command', () => {
         event: "GameJoined",
         userName: "Adolf",
         otherPlayerUserName: "Raggi",
+        gameName: "TestGame",
         timeStamp: "2015.12.03T12:55:44"
       }
     ];
@@ -28,6 +30,7 @@ describe('place token command', () => {
       col: "0",
       token: "X",
       userName: "Raggi",
+      gameName: "TestGame",
       timeStamp: "2015.12.03T12:56:44"
     };
 
@@ -38,6 +41,7 @@ describe('place token command', () => {
       col: "0",
       token: "X",
       userName: "Raggi",
+      gameName: "TestGame",
       timeStamp: "2015.12.03T12:56:44"
     }];
 
