@@ -1,6 +1,8 @@
 'use strict';
 
 const tictactoeCommandHandler = (events) => {
+  const gameCreatedEvent = events[0];
+
   return {
     executeCommand: (command) => {
       if(command.command === "CreateGame") {
@@ -17,7 +19,7 @@ const tictactoeCommandHandler = (events) => {
           eventID: command.eventID,
           event: "GameJoined",
           userName: command.userName,
-          otherPlayerUserName: "Raggi",
+          otherPlayerUserName: gameCreatedEvent.userName,
           timeStamp: command.timeStamp
         }];
       }
