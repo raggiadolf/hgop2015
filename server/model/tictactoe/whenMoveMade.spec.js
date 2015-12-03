@@ -33,7 +33,10 @@ describe('place token command', () => {
 
     then = [{
       eventID: "3",
-      event: "Placed(0,0,X)",
+      event: "Placed",
+      row: "0",
+      col: "0",
+      token: "X",
       userName: "Raggi",
       timeStamp: "2015.12.03T12:56:44"
     }];

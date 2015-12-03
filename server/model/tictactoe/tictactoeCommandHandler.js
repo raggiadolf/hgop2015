@@ -35,7 +35,10 @@ module.exports = function tictactoeCommandHandler(events) {
     "Place": (command) => {
       return [{
         eventID: command.eventID,
-        event: "Placed(" + command.row + "," + command.col + "," + command.token + ")",
+        event: "Placed",
+        row: command.row,
+        col: command.col,
+        token: command.token,
         userName: command.userName,
         timeStamp: command.timeStamp
       }];
