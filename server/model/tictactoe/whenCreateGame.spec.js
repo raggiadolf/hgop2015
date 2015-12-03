@@ -20,6 +20,7 @@ describe('create game command', () => {
       eventID: "1",
       event: "GameCreated",
       userName: "Raggi",
+      gameName: "TestGame",
       timeStamp: "2015.12.03T12:54:44"
     }];
 
@@ -43,6 +44,7 @@ describe('create game command', () => {
       eventID: "4",
       event: "GameCreated",
       userName: "Adolf",
+      gameName: "SecondTestGame",
       timeStamp: "2015.12.03T13:41:10"
     }];
 
