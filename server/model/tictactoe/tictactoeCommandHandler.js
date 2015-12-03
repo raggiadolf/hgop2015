@@ -70,6 +70,22 @@ module.exports = function tictactoeCommandHandler(events) {
         }];
       }
 
+      const prevEvent = events[events.length - 1];
+
+      if(prevEvent.event === 'Placed'
+          || prevEvent.token === command.token) {
+            return [{
+              eventID: command.eventID,
+              event: "NotYourTurn",
+              row: command.row,
+              col: command.col,
+              token: command.token,
+              userName: command.userName,
+              gameName: command.gameName,
+              timeStamp: command.timeStamp
+            }];
+          }
+
       gameState.board[command.col][command.row] = command.token;
       return [{
         eventID: command.eventID,
