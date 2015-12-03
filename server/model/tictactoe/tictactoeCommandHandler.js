@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = function tictactoeCommandHandler(events) {
-  const gameCreatedEvent = events[0];
+  const gameState = {
+    gameCreatedEvent: events[0],
+    board: [['','',''],['','',''],['','','']]
+  };
 
   const handlers = {
     "CreateGame": (command) => {
@@ -15,7 +18,7 @@ module.exports = function tictactoeCommandHandler(events) {
     },
 
     "JoinGame": (command) => {
-      if(!gameCreatedEvent) {
+      if(!gameState.gameCreatedEvent) {
         return [{
           eventID: command.eventID,
           event: "GameDoesNotExist",
@@ -28,13 +31,14 @@ module.exports = function tictactoeCommandHandler(events) {
         eventID: command.eventID,
         event: "GameJoined",
         userName: command.userName,
-        otherPlayerUserName: gameCreatedEvent.userName,
+        otherPlayerUserName: gameState.gameCreatedEvent.userName,
         gameName: command.gameName,
         timeStamp: command.timeStamp
       }];
     },
 
     "Place": (command) => {
+      gameState.board[command.col][command.row] = command.token;
       return [{
         eventID: command.eventID,
         event: "Placed",
