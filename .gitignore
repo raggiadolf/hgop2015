@@ -7,3 +7,4 @@ dist
 /server/config/local.env.js
 vagrant/package.box
 .DS_Store
+reports/
