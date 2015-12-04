@@ -3,6 +3,7 @@
 module.exports = function tictactoeCommandHandler(events) {
   const gameState = {
     gameCreatedEvent: events[0],
+    winner: '',
     board: [['','',''],['','',''],['','','']]
   };
 
@@ -73,7 +74,9 @@ module.exports = function tictactoeCommandHandler(events) {
       const prevEvent = events[events.length - 1];
 
       if(prevEvent.event === 'Placed'
-          || prevEvent.token === command.token) {
+          && prevEvent.token === command.token) {
+            console.log(prevEvent.event);
+            console.log(prevEvent.token);
             return [{
               eventID: command.eventID,
               event: "NotYourTurn",
@@ -87,6 +90,28 @@ module.exports = function tictactoeCommandHandler(events) {
           }
 
       gameState.board[command.col][command.row] = command.token;
+      if(gameState.board[command.col][0] === command.token
+          && gameState.board[command.col][1] === command.token
+          && gameState.board[command.col][2] === command.token) {
+            return [{
+              eventID: command.eventID,
+              event: "Placed",
+              row: command.row,
+              col: command.col,
+              token: command.token,
+              userName: command.userName,
+              gameName: command.gameName,
+              timeStamp: command.timeStamp
+            },
+            {
+              eventID: command.eventID,
+              event: "GameOver",
+              token: command.token,
+              winner: command.userName,
+              gameName: command.gameName,
+              timeStamp: command.timeStamp
+            }];
+          }
       return [{
         eventID: command.eventID,
         event: "Placed",
