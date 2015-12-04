@@ -90,28 +90,50 @@ module.exports = function tictactoeCommandHandler(events) {
           }
 
       gameState.board[command.col][command.row] = command.token;
-      if(gameState.board[command.col][0] === command.token
+      if (gameState.board[command.col][0] === command.token
           && gameState.board[command.col][1] === command.token
-          && gameState.board[command.col][2] === command.token) {
-            return [{
-              eventID: command.eventID,
-              event: "Placed",
-              row: command.row,
-              col: command.col,
-              token: command.token,
-              userName: command.userName,
-              gameName: command.gameName,
-              timeStamp: command.timeStamp
-            },
-            {
-              eventID: command.eventID,
-              event: "GameOver",
-              token: command.token,
-              winner: command.userName,
-              gameName: command.gameName,
-              timeStamp: command.timeStamp
-            }];
-          }
+          && gameState.board[command.col][2] === command.token) { // Horizontal win check
+        return [{
+          eventID: command.eventID,
+          event: "Placed",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        },
+        {
+          eventID: command.eventID,
+          event: "GameOver",
+          token: command.token,
+          winner: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      } else if (gameState.board[0][command.row] === command.token
+                  && gameState.board[1][command.row] === command.token
+                  && gameState.board[2][command.row] === command.token) { // Vertical win check
+        return [{
+          eventID: command.eventID,
+          event: "Placed",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        },
+        {
+          eventID: command.eventID,
+          event: "GameOver",
+          token: command.token,
+          winner: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      }
+
       return [{
         eventID: command.eventID,
         event: "Placed",
