@@ -93,6 +93,7 @@ module.exports = function tictactoeCommandHandler(events) {
       if (gameState.board[command.col][0] === command.token
           && gameState.board[command.col][1] === command.token
           && gameState.board[command.col][2] === command.token) { // Horizontal win check
+        gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
           event: "Placed",
@@ -114,6 +115,7 @@ module.exports = function tictactoeCommandHandler(events) {
       } else if (gameState.board[0][command.row] === command.token
                   && gameState.board[1][command.row] === command.token
                   && gameState.board[2][command.row] === command.token) { // Vertical win check
+        gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
           event: "Placed",
@@ -135,6 +137,7 @@ module.exports = function tictactoeCommandHandler(events) {
       } else if (gameState.board[0][0] === command.token
                   && gameState.board[1][1] === command.token
                   && gameState.board[2][2] === command.token) { // Diagonal test left to right
+        gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
           event: "Placed",
