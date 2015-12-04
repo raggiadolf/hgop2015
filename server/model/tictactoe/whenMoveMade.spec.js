@@ -312,5 +312,82 @@ describe('place token command', () => {
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
+
+    it('should register a win diagonally', () => {
+      given.push({
+        eventID: "3",
+        event: "Placed",
+        row: 0,
+        col: 0,
+        token: "X",
+        userName: "Raggi",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21:27:34"
+      },
+      {
+        eventID: "4",
+        event: "Placed",
+        row: 0,
+        col: 1,
+        token: "O",
+        userName: "Adolf",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21:28:34"
+      },
+      {
+        eventID: "5",
+        event: "Placed",
+        row: 1,
+        col: 1,
+        token: "X",
+        userName: "Raggi",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21:29:59"
+      },
+      {
+        eventID: "6",
+        event: "Placed",
+        row: 0,
+        col: 2,
+        token: "O",
+        userName: "Adolf",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21:30:16"
+      });
+
+      when = {
+        eventID: "7",
+        command: "Place",
+        row: 2,
+        col: 2,
+        token: "X",
+        userName: "Raggi",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21.38:39"
+      };
+
+      then = [{
+        eventID: "7",
+        event: "Placed",
+        row: 2,
+        col: 2,
+        token: "X",
+        userName: "Raggi",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21.38:39"
+      },
+      {
+        eventID: "7",
+        event: "GameOver",
+        token: "X",
+        winner: "Raggi",
+        gameName: "TestGame",
+        timeStamp: "2015.12.03T21.38:39"
+      }];
+
+      const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+      JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+    });
   });
 });

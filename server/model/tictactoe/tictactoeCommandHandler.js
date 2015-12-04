@@ -132,6 +132,48 @@ module.exports = function tictactoeCommandHandler(events) {
           gameName: command.gameName,
           timeStamp: command.timeStamp
         }];
+      } else if (gameState.board[0][0] === command.token
+                  && gameState.board[1][1] === command.token
+                  && gameState.board[2][2] === command.token) { // Diagonal test left to right
+        return [{
+          eventID: command.eventID,
+          event: "Placed",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        },
+        {
+          eventID: command.eventID,
+          event: "GameOver",
+          token: command.token,
+          winner: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      } else if (gameState.board[0][2] === command.token
+                  && gameState.board[1][1] === command.token
+                  && gameState.board[2][0] === command.token) { // Diagonal test right to left
+        return [{
+          eventID: command.eventID,
+          event: "Placed",
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        },
+        {
+          eventID: command.eventID,
+          event: "GameOver",
+          token: command.token,
+          winner: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
       }
 
       return [{
