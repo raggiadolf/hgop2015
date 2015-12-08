@@ -8,3 +8,4 @@ dist
 vagrant/package.box
 .DS_Store
 reports/
+server-tests.xml
