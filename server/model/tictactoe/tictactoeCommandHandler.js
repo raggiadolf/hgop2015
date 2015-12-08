@@ -17,6 +17,7 @@ module.exports = function tictactoeCommandHandler(events) {
     "CreateGame": (command) => {
       return [{
         eventID: command.eventID,
+        gameID: command.gameID,
         event: "GameCreated",
         userName: command.userName,
         gameName: command.gameName,
@@ -73,10 +74,8 @@ module.exports = function tictactoeCommandHandler(events) {
 
       const prevEvent = events[events.length - 1];
 
-      if(prevEvent.event === 'Placed'
-          && prevEvent.token === command.token) {
-            console.log(prevEvent.event);
-            console.log(prevEvent.token);
+      if(prevEvent.event === 'Placed' &&
+          prevEvent.token === command.token) {
             return [{
               eventID: command.eventID,
               event: "NotYourTurn",
@@ -90,9 +89,9 @@ module.exports = function tictactoeCommandHandler(events) {
           }
 
       gameState.board[command.col][command.row] = command.token;
-      if (gameState.board[command.col][0] === command.token
-          && gameState.board[command.col][1] === command.token
-          && gameState.board[command.col][2] === command.token) { // Horizontal win check
+      if (gameState.board[command.col][0] === command.token &&
+          gameState.board[command.col][1] === command.token &&
+          gameState.board[command.col][2] === command.token) { // Horizontal win check
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
@@ -112,9 +111,9 @@ module.exports = function tictactoeCommandHandler(events) {
           gameName: command.gameName,
           timeStamp: command.timeStamp
         }];
-      } else if (gameState.board[0][command.row] === command.token
-                  && gameState.board[1][command.row] === command.token
-                  && gameState.board[2][command.row] === command.token) { // Vertical win check
+      } else if (gameState.board[0][command.row] === command.token &&
+                  gameState.board[1][command.row] === command.token &&
+                  gameState.board[2][command.row] === command.token) { // Vertical win check
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
@@ -134,9 +133,9 @@ module.exports = function tictactoeCommandHandler(events) {
           gameName: command.gameName,
           timeStamp: command.timeStamp
         }];
-      } else if (gameState.board[0][0] === command.token
-                  && gameState.board[1][1] === command.token
-                  && gameState.board[2][2] === command.token) { // Diagonal test left to right
+      } else if (gameState.board[0][0] === command.token &&
+                  gameState.board[1][1] === command.token &&
+                  gameState.board[2][2] === command.token) { // Diagonal test left to right
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
@@ -156,9 +155,9 @@ module.exports = function tictactoeCommandHandler(events) {
           gameName: command.gameName,
           timeStamp: command.timeStamp
         }];
-      } else if (gameState.board[0][2] === command.token
-                  && gameState.board[1][1] === command.token
-                  && gameState.board[2][0] === command.token) { // Diagonal test right to left
+      } else if (gameState.board[0][2] === command.token &&
+                  gameState.board[1][1] === command.token &&
+                  gameState.board[2][0] === command.token) { // Diagonal test right to left
         return [{
           eventID: command.eventID,
           event: "Placed",
