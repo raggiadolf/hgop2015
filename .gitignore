@@ -6,6 +6,7 @@ client/bower_components
 dist
 /server/config/local.env.js
 vagrant/package.box
+vagrantTestEnvironment/.vagrant/
 .DS_Store
 reports/
 server-tests
