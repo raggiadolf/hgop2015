@@ -2,10 +2,10 @@
 
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 
-describe('create game command', () => {
-  let given, when, then;
+describe('create game command', function() {
+  var given, when, then;
 
-  it('should create game', () => {
+  it('should create game', function() {
     given = [];
 
     when = {
@@ -24,12 +24,12 @@ describe('create game command', () => {
       timeStamp: "2015.12.03T12:54:44"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  it('should create a second game with different user and different timestamp', () => {
+  it('should create a second game with different user and different timestamp', function() {
     given = [];
 
     when = {
@@ -48,7 +48,7 @@ describe('create game command', () => {
       timeStamp: "2015.12.03T13:41:10"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });

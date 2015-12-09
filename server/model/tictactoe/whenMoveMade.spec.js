@@ -2,10 +2,10 @@
 
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 
-describe('place token command', () => {
-  let given, when, then;
+describe('place token command', function() {
+  var given, when, then;
 
-  beforeEach(() => {
+  beforeEach(function() {
     given = [{
         eventID: "1",
         event: "GameCreated",
@@ -24,7 +24,7 @@ describe('place token command', () => {
     ];
   });
 
-  it('should place a legit token on an empty board', () => {
+  it('should place a legit token on an empty board', function() {
     when = {
       eventID: "3",
       command: "Place",
@@ -47,12 +47,12 @@ describe('place token command', () => {
       timeStamp: "2015.12.03T12:56:44"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  it('should respond with an error message when trying to place out of bounds', () => {
+  it('should respond with an error message when trying to place out of bounds', function() {
     when = {
       eventID: "3",
       command: "Place",
@@ -75,12 +75,12 @@ describe('place token command', () => {
       timeStamp: "2015.12.03T21:03:44"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  it('should respond with an error message when trying to place on top of a previously placed token', () => {
+  it('should respond with an error message when trying to place on top of a previously placed token', function() {
     given.push({
       eventID: "3",
       event: "Placed",
@@ -114,12 +114,12 @@ describe('place token command', () => {
       timeStamp: "2015.12.03T21:28:17"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  it('should respond with an error when trying to place out of turn', () => {
+  it('should respond with an error when trying to place out of turn', function() {
     given.push({
       eventID: "3",
       event: "Placed",
@@ -153,13 +153,13 @@ describe('place token command', () => {
       timeStamp: "2015.12.03T21.30:39"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  describe('Winning moves', () => {
-    it('should register a win horizontally', () => {
+  describe('Winning moves', function() {
+    it('should register a win horizontally', function() {
       given.push({
         eventID: "3",
         event: "Placed",
@@ -231,12 +231,12 @@ describe('place token command', () => {
         timeStamp: "2015.12.03T21.30:39"
       }];
 
-      const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should register a win vertically', () => {
+    it('should register a win vertically', function() {
       given.push({
         eventID: "3",
         event: "Placed",
@@ -308,12 +308,12 @@ describe('place token command', () => {
         timeStamp: "2015.12.03T21.32:39"
       }];
 
-      const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });
 
-    it('should register a win diagonally', () => {
+    it('should register a win diagonally', function() {
       given.push({
         eventID: "3",
         event: "Placed",
@@ -385,7 +385,7 @@ describe('place token command', () => {
         timeStamp: "2015.12.03T21.38:39"
       }];
 
-      const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
     });

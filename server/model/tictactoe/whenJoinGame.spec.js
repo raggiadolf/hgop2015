@@ -2,10 +2,10 @@
 
 var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 
-describe('join game command', () => {
-  let given, when, then;
+describe('join game command', function() {
+  var given, when, then;
 
-  it('should join game', () => {
+  it('should join game', function() {
     given = [{
       eventID: "2",
       event: "GameCreated",
@@ -31,12 +31,12 @@ describe('join game command', () => {
       timeStamp: "2015.12.03T13:26:20"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });
 
-  it('should not allow joining of a game that does not exist', () => {
+  it('should not allow joining of a game that does not exist', function() {
     given = [];
 
     when = {
@@ -54,7 +54,7 @@ describe('join game command', () => {
       timestamp: "2015.12.03T15:30:56"
     }];
 
-    const actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+    var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
     JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
   });

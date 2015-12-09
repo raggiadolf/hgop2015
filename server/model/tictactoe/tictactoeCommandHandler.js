@@ -1,20 +1,20 @@
 'use strict';
 
 module.exports = function tictactoeCommandHandler(events) {
-  const gameState = {
+  var gameState = {
     gameCreatedEvent: events[0],
     winner: '',
     board: [['','',''],['','',''],['','','']]
   };
 
-  for(let i = 0; i < events.length; i++) {
+  for(var i = 0; i < events.length; i++) {
     if(events[i].event === 'Placed') {
       gameState.board[events[i].col][events[i].row] = events[i].token;
     }
   }
 
-  const handlers = {
-    "CreateGame": (command) => {
+  var handlers = {
+    "CreateGame": function(command) {
       return [{
         eventID: command.eventID,
         gameID: command.gameID,
@@ -25,7 +25,7 @@ module.exports = function tictactoeCommandHandler(events) {
       }];
     },
 
-    "JoinGame": (command) => {
+    "JoinGame": function(command) {
       if(!gameState.gameCreatedEvent) {
         return [{
           eventID: command.eventID,
@@ -45,7 +45,7 @@ module.exports = function tictactoeCommandHandler(events) {
       }];
     },
 
-    "Place": (command) => {
+    "Place": function(command) {
       if(command.col > 2 || command.row > 2) {
         return [{
           eventID: command.eventID,
@@ -72,7 +72,7 @@ module.exports = function tictactoeCommandHandler(events) {
         }];
       }
 
-      const prevEvent = events[events.length - 1];
+      var prevEvent = events[events.length - 1];
 
       if(prevEvent.event === 'Placed' &&
           prevEvent.token === command.token) {
@@ -192,7 +192,7 @@ module.exports = function tictactoeCommandHandler(events) {
   };
 
   return {
-    executeCommand: (command) => {
+    executeCommand: function(command) {
       return handlers[command.command](command);
     }
   }
