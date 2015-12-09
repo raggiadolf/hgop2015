@@ -22,3 +22,7 @@ Erum að setja upp Jenkins til að geta látið hann keyra test fyrir okkur og g
 Fékk Jenkins til að keyra upp buildið. Bættum einnig við Jenkins projecti til að pusha nýjasta buildinu á docker, og deploya því á test vélina.
 #Dagur 5
 Kominn með Karma test reports upp, þarf að finna útúr því hvernig ég launcha þeim beint frá jenkins þannig að reportin verði auðsýnileg eftir að jenkins hefur klárað sitt ferli. Næsta skref er að fara að skrifa upp möguleg unit tests með 'event based approach'
+#Dagur 6
+Byrjaði á að integrera kóða frá Gulla með Memory event store og infrastrúktur fyrir routing. Þarf ennþá að aðlaga þetta að þeim kóða sem er fyrir í CommandHandlernum.
+#Dagur 7
+Kláraði að integrera kóða með Memory store og routing, get postað á appið og fengið response til baka. Þarf samt ennþá almennilega að wrappa hausnum utan um flæðið í þessu öllu saman.
