@@ -10,3 +10,4 @@ vagrantTestEnvironment/.vagrant/
 .DS_Store
 reports/
 server-tests
+acceptance-tests
