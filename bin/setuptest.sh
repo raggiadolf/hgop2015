@@ -8,4 +8,4 @@ docker pull raggiadolf/tictactoe
 
 echo Running the docker container
 echo
-docker run --name="tictactoe" -p 9000:8080 -d -e "NODE_ENV=production" raggiadolf/tictactoe
+docker run -p 9000:8080 -d -e "NODE_ENV=production" raggiadolf/tictactoe
