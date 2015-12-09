@@ -49,27 +49,24 @@ describe('TEST ENV GET /api/gameHistory', function() {
   });
 
   it('should execute fluid API test', function(done) {
-    var event = {
+    given({
       eventID: "1234",
       gameID: "666",
       command: "CreateGame",
       userName: "Raggi",
       gameName: "TheFirstGame",
       timeStamp: "2015.12.09T09:54:17"
-    };
-
-    var destination = '/api/createGame';
-
-    var expectation = [{
-      "eventID": "1234",
-      "gameID": "666",
-      "event": "GameCreated",
-      "userName": "Raggi",
-      "gameName": "TheFirstGame",
-      "timeStamp": "2015.12.09T09:54:17"
-    }];
-
-    given(event).sendTo(destination).expect(expectation).when(done);
+    })
+      .sendTo('/api/createGame')
+      .expect([{
+        "eventID": "1234",
+        "gameID": "666",
+        "event": "GameCreated",
+        "userName": "Raggi",
+        "gameName": "TheFirstGame",
+        "timeStamp": "2015.12.09T09:54:17"
+      }])
+      .when(done);
   });
 });
 
