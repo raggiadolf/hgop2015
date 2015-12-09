@@ -47,4 +47,12 @@ describe('TEST ENV GET /api/gameHistory', function() {
           });
       });
   });
+
+  it('should execute fluid API test', function(done) {
+    /*
+      given(user("YourUser").createGame("TheFirstGame"))
+      .expect("GameCreated").withName("TheFirstGame").isOk(done);
+      */
+    done();
+  });
 });
