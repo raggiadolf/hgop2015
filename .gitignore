@@ -11,3 +11,4 @@ vagrantTestEnvironment/.vagrant/
 reports/
 server-tests
 acceptance-tests
+load-tests
