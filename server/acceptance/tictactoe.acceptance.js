@@ -59,7 +59,15 @@ describe('TEST ENV GET /api/gameHistory', function() {
     given(user("Raggi").createsGame("GameIDOne").named("TheFirstGame"))
       .and(user("Adolf").joinsGame("GameIDOne"))
       .and(user("Raggi").placesMove(1,1))
-      .expect("Placed").byUser("Raggi").isOk(done);
+      .and(user("Adolf").placesMove(0,1))
+      .and(user("Raggi").placesMove(2,0))
+      .and(user("Adolf").placesMove(0,2))
+      .and(user("Raggi").placesMove(0,0))
+      .and(user("Adolf").placesMove(2,2))
+      .and(user("Raggi").placesMove(1,2))
+      .and(user("Adolf").placesMove(1,0))
+      .and(user("Raggi").placesMove(2,1))
+      .expect("GameDrawn").byUser("Raggi").isOk(done);
   });
 });
 
@@ -89,7 +97,6 @@ function given(event) {
     },
     isOk: function(done) {
       for(var i = 0; i < commands.length; i++) {
-        console.log('sending command:', commands[i]);
         var req = request(acceptanceUrl);
         req
           .post(commands[i].url)
