@@ -53,8 +53,8 @@ module.exports = function tictactoeCommandHandler(events) {
       if(command.col > 2 || command.col < 0 || command.row > 2 || command.col < 0) {
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "IllegalMove",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -67,8 +67,8 @@ module.exports = function tictactoeCommandHandler(events) {
       if(gameState.board[command.col][command.row] !== '') {
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "IllegalMove",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -84,8 +84,8 @@ module.exports = function tictactoeCommandHandler(events) {
           prevEvent.token === command.token) {
             return [{
               eventID: command.eventID,
+              gameID: command.gameID,
               event: "NotYourTurn",
-              gameID: gameState.gameID,
               row: command.row,
               col: command.col,
               token: command.token,
@@ -102,8 +102,8 @@ module.exports = function tictactoeCommandHandler(events) {
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "Placed",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -113,8 +113,8 @@ module.exports = function tictactoeCommandHandler(events) {
         },
         {
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "GameOver",
-          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -126,8 +126,8 @@ module.exports = function tictactoeCommandHandler(events) {
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "Placed",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -137,8 +137,8 @@ module.exports = function tictactoeCommandHandler(events) {
         },
         {
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "GameOver",
-          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -150,8 +150,8 @@ module.exports = function tictactoeCommandHandler(events) {
         gameState.winner = command.userName;
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "Placed",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -161,8 +161,8 @@ module.exports = function tictactoeCommandHandler(events) {
         },
         {
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "GameOver",
-          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -173,8 +173,8 @@ module.exports = function tictactoeCommandHandler(events) {
                   gameState.board[2][0] === command.token) { // Diagonal test right to left
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "Placed",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -184,8 +184,8 @@ module.exports = function tictactoeCommandHandler(events) {
         },
         {
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "GameOver",
-          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -196,8 +196,8 @@ module.exports = function tictactoeCommandHandler(events) {
       if(boardFull(gameState.board)) {
         return [{
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "Placed",
-          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -207,8 +207,8 @@ module.exports = function tictactoeCommandHandler(events) {
         },
         {
           eventID: command.eventID,
+          gameID: command.gameID,
           event: "GameDrawn",
-          gameID: gameState.gameID,
           token: command.token,
           lastUser: command.userName,
           gameName: command.gameName,
@@ -218,8 +218,8 @@ module.exports = function tictactoeCommandHandler(events) {
 
       return [{
         eventID: command.eventID,
+        gameID: command.gameID,
         event: "Placed",
-        gameID: gameState.gameID,
         row: command.row,
         col: command.col,
         token: command.token,

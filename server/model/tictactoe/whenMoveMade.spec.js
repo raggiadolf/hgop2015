@@ -8,6 +8,7 @@ describe('place token command', function() {
   beforeEach(function() {
     given = [{
         eventID: "1",
+        gameID: "999",
         event: "GameCreated",
         userName: "Raggi",
         gameName: "TestGame",
@@ -15,6 +16,7 @@ describe('place token command', function() {
       },
       {
         eventID: "2",
+        gameID: "999",
         event: "GameJoined",
         userName: "Adolf",
         otherPlayerUserName: "Raggi",
@@ -27,6 +29,7 @@ describe('place token command', function() {
   it('should place a legit token on an empty board', function() {
     when = {
       eventID: "3",
+      gameID: "999",
       command: "Place",
       row: 0,
       col: 0,
@@ -38,6 +41,7 @@ describe('place token command', function() {
 
     then = [{
       eventID: "3",
+      gameID: "999",
       event: "Placed",
       row: 0,
       col: 0,
@@ -55,6 +59,7 @@ describe('place token command', function() {
   it('should respond with an error message when trying to place out of bounds', function() {
     when = {
       eventID: "3",
+      gameID: "999",
       command: "Place",
       row: 0,
       col: 3,
@@ -66,6 +71,7 @@ describe('place token command', function() {
 
     then = [{
       eventID: "3",
+      gameID: "999",
       event: "IllegalMove",
       row: 0,
       col: 3,
@@ -83,6 +89,7 @@ describe('place token command', function() {
   it('should respond with an error message when trying to place on top of a previously placed token', function() {
     given.push({
       eventID: "3",
+      gameID: "999",
       event: "Placed",
       row: 1,
       col: 1,
@@ -94,6 +101,7 @@ describe('place token command', function() {
 
     when = {
       eventID: "4",
+      gameID: "999",
       command: "Place",
       row: 1,
       col: 1,
@@ -105,6 +113,7 @@ describe('place token command', function() {
 
     then = [{
       eventID: "4",
+      gameID: "999",
       event: "IllegalMove",
       row: 1,
       col: 1,
@@ -122,6 +131,7 @@ describe('place token command', function() {
   it('should respond with an error when trying to place out of turn', function() {
     given.push({
       eventID: "3",
+      gameID: "999",
       event: "Placed",
       row: 1,
       col: 1,
@@ -133,6 +143,7 @@ describe('place token command', function() {
 
     when = {
       eventID: "4",
+      gameID: "999",
       command: "Place",
       row: 0,
       col: 1,
@@ -144,6 +155,7 @@ describe('place token command', function() {
 
     then = [{
       eventID: "4",
+      gameID: "999",
       event: "NotYourTurn",
       row: 0,
       col: 1,
@@ -162,6 +174,7 @@ describe('place token command', function() {
     it('should register a win horizontally', function() {
       given.push({
         eventID: "3",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 0,
@@ -172,6 +185,7 @@ describe('place token command', function() {
       },
       {
         eventID: "4",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 1,
@@ -182,6 +196,7 @@ describe('place token command', function() {
       },
       {
         eventID: "5",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 0,
@@ -192,6 +207,7 @@ describe('place token command', function() {
       },
       {
         eventID: "6",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 2,
@@ -203,6 +219,7 @@ describe('place token command', function() {
 
       when = {
         eventID: "7",
+        gameID: "999",
         command: "Place",
         row: 2,
         col: 0,
@@ -214,6 +231,7 @@ describe('place token command', function() {
 
       then = [{
         eventID: "7",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 0,
@@ -224,6 +242,7 @@ describe('place token command', function() {
       },
       {
         eventID: "7",
+        gameID: "999",
         event: "GameOver",
         token: "X",
         winner: "Raggi",
@@ -239,6 +258,7 @@ describe('place token command', function() {
     it('should register a win vertically', function() {
       given.push({
         eventID: "3",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 0,
@@ -249,6 +269,7 @@ describe('place token command', function() {
       },
       {
         eventID: "4",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 0,
@@ -259,6 +280,7 @@ describe('place token command', function() {
       },
       {
         eventID: "5",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 1,
@@ -269,6 +291,7 @@ describe('place token command', function() {
       },
       {
         eventID: "6",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 0,
@@ -280,6 +303,7 @@ describe('place token command', function() {
 
       when = {
         eventID: "7",
+        gameID: "999",
         command: "Place",
         row: 0,
         col: 2,
@@ -291,6 +315,7 @@ describe('place token command', function() {
 
       then = [{
         eventID: "7",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 2,
@@ -301,6 +326,7 @@ describe('place token command', function() {
       },
       {
         eventID: "7",
+        gameID: "999",
         event: "GameOver",
         token: "X",
         winner: "Raggi",
@@ -316,6 +342,7 @@ describe('place token command', function() {
     it('should register a win diagonally', function() {
       given.push({
         eventID: "3",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 0,
@@ -326,6 +353,7 @@ describe('place token command', function() {
       },
       {
         eventID: "4",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 1,
@@ -336,6 +364,7 @@ describe('place token command', function() {
       },
       {
         eventID: "5",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 1,
@@ -346,6 +375,7 @@ describe('place token command', function() {
       },
       {
         eventID: "6",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 2,
@@ -357,6 +387,7 @@ describe('place token command', function() {
 
       when = {
         eventID: "7",
+        gameID: "999",
         command: "Place",
         row: 2,
         col: 2,
@@ -368,6 +399,7 @@ describe('place token command', function() {
 
       then = [{
         eventID: "7",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 2,
@@ -378,6 +410,7 @@ describe('place token command', function() {
       },
       {
         eventID: "7",
+        gameID: "999",
         event: "GameOver",
         token: "X",
         winner: "Raggi",
@@ -395,6 +428,7 @@ describe('place token command', function() {
     it('should return gamedrawn when the game is drawn', function() {
       given.push({
         eventID: "3",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 1,
@@ -405,6 +439,7 @@ describe('place token command', function() {
       },
       {
         eventID: "4",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 1,
@@ -415,6 +450,7 @@ describe('place token command', function() {
       },
       {
         eventID: "5",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 0,
@@ -425,6 +461,7 @@ describe('place token command', function() {
       },
       {
         eventID: "6",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 2,
@@ -435,6 +472,7 @@ describe('place token command', function() {
       },
       {
         eventID: "7",
+        gameID: "999",
         event: "Placed",
         row: 0,
         col: 0,
@@ -445,6 +483,7 @@ describe('place token command', function() {
       },
       {
         eventID: "8",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 2,
@@ -455,6 +494,7 @@ describe('place token command', function() {
       },
       {
         eventID: "9",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 2,
@@ -465,6 +505,7 @@ describe('place token command', function() {
       },
       {
         eventID: "10",
+        gameID: "999",
         event: "Placed",
         row: 1,
         col: 0,
@@ -476,6 +517,7 @@ describe('place token command', function() {
 
       when = {
         eventID: "11",
+        gameID: "999",
         command: "Place",
         row: 2,
         col: 1,
@@ -487,6 +529,7 @@ describe('place token command', function() {
 
       then = [{
         eventID: "11",
+        gameID: "999",
         event: "Placed",
         row: 2,
         col: 1,
@@ -497,6 +540,7 @@ describe('place token command', function() {
       },
       {
         eventID: "11",
+        gameID: "999",
         event: "GameDrawn",
         token: "X",
         lastUser: "Raggi",
