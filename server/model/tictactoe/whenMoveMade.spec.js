@@ -507,8 +507,6 @@ describe('place token command', function() {
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
-
-      console.log(actualEvents);
     });
   });
 });

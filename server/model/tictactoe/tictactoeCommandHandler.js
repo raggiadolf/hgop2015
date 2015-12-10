@@ -32,6 +32,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "GameDoesNotExist",
+          gameID: command.gameID,
           userName: command.userName,
           timestamp: command.timeStamp
         }];
