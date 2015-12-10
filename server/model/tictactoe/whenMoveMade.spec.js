@@ -501,7 +501,7 @@ describe('place token command', function() {
         eventID: "11",
         gameID: "999",
         event: "GameDrawn",
-        lastUser: "Raggi",
+        userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
       }];
