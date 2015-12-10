@@ -431,7 +431,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
-        userName: "Raggi",
+        userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
       },
@@ -451,7 +451,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 2,
-        userName: "Raggi",
+        userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
       },
@@ -471,7 +471,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 0,
-        userName: "Raggi",
+        userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
       });
