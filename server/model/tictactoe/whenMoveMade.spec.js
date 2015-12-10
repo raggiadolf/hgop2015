@@ -33,7 +33,6 @@ describe('place token command', function() {
       command: "Place",
       row: 0,
       col: 0,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T12:56:44"
@@ -45,7 +44,6 @@ describe('place token command', function() {
       event: "Placed",
       row: 0,
       col: 0,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T12:56:44"
@@ -63,7 +61,6 @@ describe('place token command', function() {
       command: "Place",
       row: 0,
       col: 3,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:03:44"
@@ -75,7 +72,6 @@ describe('place token command', function() {
       event: "IllegalMove",
       row: 0,
       col: 3,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:03:44"
@@ -93,7 +89,6 @@ describe('place token command', function() {
       event: "Placed",
       row: 1,
       col: 1,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:27:34"
@@ -105,7 +100,6 @@ describe('place token command', function() {
       command: "Place",
       row: 1,
       col: 1,
-      token: "O",
       userName: "Adolf",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:28:17"
@@ -117,7 +111,6 @@ describe('place token command', function() {
       event: "IllegalMove",
       row: 1,
       col: 1,
-      token: "O",
       userName: "Adolf",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:28:17"
@@ -135,7 +128,6 @@ describe('place token command', function() {
       event: "Placed",
       row: 1,
       col: 1,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:27:34"
@@ -147,7 +139,6 @@ describe('place token command', function() {
       command: "Place",
       row: 0,
       col: 1,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21.30:39"
@@ -159,7 +150,6 @@ describe('place token command', function() {
       event: "NotYourTurn",
       row: 0,
       col: 1,
-      token: "X",
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21.30:39"
@@ -178,7 +168,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -189,7 +178,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 1,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:28:34"
@@ -200,7 +188,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:29:34"
@@ -211,7 +198,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:30:34"
@@ -223,7 +209,6 @@ describe('place token command', function() {
         command: "Place",
         row: 2,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.30:39"
@@ -235,7 +220,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.30:39"
@@ -244,7 +228,6 @@ describe('place token command', function() {
         eventID: "7",
         gameID: "999",
         event: "GameOver",
-        token: "X",
         winner: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.30:39"
@@ -262,7 +245,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -273,7 +255,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 0,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:29:34"
@@ -284,7 +265,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 1,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:30:24"
@@ -295,7 +275,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 0,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:31:16"
@@ -307,7 +286,6 @@ describe('place token command', function() {
         command: "Place",
         row: 0,
         col: 2,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.32:39"
@@ -319,7 +297,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.32:39"
@@ -328,7 +305,6 @@ describe('place token command', function() {
         eventID: "7",
         gameID: "999",
         event: "GameOver",
-        token: "X",
         winner: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.32:39"
@@ -346,7 +322,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -357,7 +332,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 1,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:28:34"
@@ -368,7 +342,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 1,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:29:59"
@@ -379,7 +352,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:30:16"
@@ -391,7 +363,6 @@ describe('place token command', function() {
         command: "Place",
         row: 2,
         col: 2,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -403,7 +374,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 2,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -412,7 +382,6 @@ describe('place token command', function() {
         eventID: "7",
         gameID: "999",
         event: "GameOver",
-        token: "X",
         winner: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -432,7 +401,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 1,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -443,7 +411,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 1,
-        token: "O",
         userName: "Adolf",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -454,7 +421,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -465,7 +431,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
-        token: "O",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -476,7 +441,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 0,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -487,7 +451,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 2,
-        token: "O",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -498,7 +461,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 2,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -509,7 +471,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 1,
         col: 0,
-        token: "O",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21:27:34"
@@ -521,7 +482,6 @@ describe('place token command', function() {
         command: "Place",
         row: 2,
         col: 1,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -533,7 +493,6 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 1,
-        token: "X",
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -542,7 +501,6 @@ describe('place token command', function() {
         eventID: "11",
         gameID: "999",
         event: "GameDrawn",
-        token: "X",
         lastUser: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"

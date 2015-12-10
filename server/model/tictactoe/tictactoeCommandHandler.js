@@ -12,7 +12,8 @@ module.exports = function tictactoeCommandHandler(events) {
 
   for(var i = 0; i < events.length; i++) {
     if(events[i].event === 'Placed') {
-      gameState.board[events[i].col][events[i].row] = events[i].token;
+      var token = (events[i].userName === gameState.playerOne ? 'X' : 'O');
+      gameState.board[events[i].col][events[i].row] = token;
     }
   }
 
@@ -59,7 +60,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "IllegalMove",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -73,7 +73,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "IllegalMove",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -90,7 +89,6 @@ module.exports = function tictactoeCommandHandler(events) {
               event: "NotYourTurn",
               row: command.row,
               col: command.col,
-              token: command.token,
               userName: command.userName,
               gameName: command.gameName,
               timeStamp: command.timeStamp
@@ -108,7 +106,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -117,7 +114,6 @@ module.exports = function tictactoeCommandHandler(events) {
           eventID: command.eventID,
           gameID: command.gameID,
           event: "GameOver",
-          token: command.token,
           winner: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -132,7 +128,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -141,7 +136,6 @@ module.exports = function tictactoeCommandHandler(events) {
           eventID: command.eventID,
           gameID: command.gameID,
           event: "GameOver",
-          token: command.token,
           winner: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -156,7 +150,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -165,7 +158,6 @@ module.exports = function tictactoeCommandHandler(events) {
           eventID: command.eventID,
           gameID: command.gameID,
           event: "GameOver",
-          token: command.token,
           winner: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -179,7 +171,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -188,7 +179,6 @@ module.exports = function tictactoeCommandHandler(events) {
           eventID: command.eventID,
           gameID: command.gameID,
           event: "GameOver",
-          token: command.token,
           winner: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -202,7 +192,6 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
-          token: command.token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -211,7 +200,6 @@ module.exports = function tictactoeCommandHandler(events) {
           eventID: command.eventID,
           gameID: command.gameID,
           event: "GameDrawn",
-          token: command.token,
           lastUser: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -224,7 +212,6 @@ module.exports = function tictactoeCommandHandler(events) {
         event: "Placed",
         row: command.row,
         col: command.col,
-        token: command.token,
         userName: command.userName,
         gameName: command.gameName,
         timeStamp: command.timeStamp
