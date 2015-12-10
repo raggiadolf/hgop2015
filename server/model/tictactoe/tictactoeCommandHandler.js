@@ -31,8 +31,8 @@ module.exports = function tictactoeCommandHandler(events) {
       if(!gameState.gameCreatedEvent) {
         return [{
           eventID: command.eventID,
-          event: "GameDoesNotExist",
           gameID: command.gameID,
+          event: "GameDoesNotExist",
           userName: command.userName,
           timestamp: command.timeStamp
         }];
@@ -40,8 +40,8 @@ module.exports = function tictactoeCommandHandler(events) {
 
       return [{
         eventID: command.eventID,
+        gameID: command.gameID,
         event: "GameJoined",
-        gameID: gameState.gameID,
         userName: command.userName,
         otherPlayerUserName: gameState.gameCreatedEvent.userName,
         gameName: command.gameName,

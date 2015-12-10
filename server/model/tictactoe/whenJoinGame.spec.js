@@ -8,6 +8,7 @@ describe('join game command', function() {
   it('should join game', function() {
     given = [{
       eventID: "2",
+      gameID: "999",
       event: "GameCreated",
       userName: "Raggi",
       gameName: "TestGame",
@@ -16,6 +17,7 @@ describe('join game command', function() {
 
     when = {
       eventID: "3",
+      gameID: "999",
       command: "JoinGame",
       userName: "Adolf",
       gameName: "TestGame",
@@ -24,6 +26,7 @@ describe('join game command', function() {
 
     then = [{
       eventID: "3",
+      gameID: "999",
       event: "GameJoined",
       userName: "Adolf",
       otherPlayerUserName: "Raggi",
@@ -41,6 +44,7 @@ describe('join game command', function() {
 
     when = {
       eventID: "6",
+      gameID: "666",
       command: "JoinGame",
       userName: "Raggi",
       gameName: "NonExistingGame",
@@ -49,6 +53,7 @@ describe('join game command', function() {
 
     then = [{
       eventID: "6",
+      gameID: "666",
       event: "GameDoesNotExist",
       userName: "Raggi",
       timestamp: "2015.12.03T15:30:56"
