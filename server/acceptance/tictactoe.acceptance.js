@@ -32,7 +32,7 @@ describe('TEST ENV GET /api/gameHistory', function() {
         request(acceptanceUrl)
           .get('/api/gameHistory/999')
           .expect(200)
-          .expect('Content-Type', 'application/json')
+          .expect('Content-Type', /json/)
           .end(function(err, res) {
             if(err) return done(err);
             res.body.should.be.instanceof(Array);
@@ -51,21 +51,23 @@ describe('TEST ENV GET /api/gameHistory', function() {
   });
 
   it('should execute fluid API test', function(done) {
-    given(user("Raggi").createsGame("GameIDOne"))
-      .expect("GameCreated").isOk(done);
+    given(user("Raggi").createsGame("TestGameID"))
+      .expect("GameCreated").byUser("Raggi").isOk(done);
   });
 
   it('should play game until won or drawn', function(done) {
     given(user("Raggi").createsGame("GameIDOne").named("TheFirstGame"))
       .and(user("Adolf").joinsGame("GameIDOne"))
-      .expect("MovePlaced").isOk(done);
+      .and(user("Raggi").placesMove(1,1))
+      .expect("Placed").byUser("Raggi").isOk(done);
   });
 });
 
 function given(event) {
   var eEvent = {
     name: event,
-    userName: undefined
+    userName: undefined,
+    gameID: event.command.gameID
   };
 
   var commands = [];
@@ -77,6 +79,7 @@ function given(event) {
       return givenApi;
     },
     and: function(event) {
+      event.command.gameID = eEvent.gameID;
       commands.push(event.command);
       return givenApi;
     },
@@ -86,24 +89,28 @@ function given(event) {
     },
     isOk: function(done) {
       for(var i = 0; i < commands.length; i++) {
+        console.log('sending command:', commands[i]);
         var req = request(acceptanceUrl);
         req
           .post(commands[i].url)
           .type('json')
           .send(commands[i])
           .end(function(err, res) {
-            request(acceptanceUrl)
-              .get('/api/gameHistory' + commands[i].event.gameID)
-              .expect(200)
-              .expect('Content-Type', 'application/json')
-              .end(function(err, res) {
-                if(err) return done(err);
-                res.body.should.be.instanceof(Array);
-                should(res.body).eql(expectations);
-              });
+            if(err) done(err);
           });
       }
-      done();
+
+      var historyReq = request(acceptanceUrl);
+      historyReq
+        .get('/api/gameHistory/' + eEvent.gameID)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(req, res) {
+          should(res.body[res.body.length - 1].event).eql(eEvent.name);
+          should(res.body[res.body.length - 1].userName).eql(eEvent.userName);
+          should(res.body[res.body.length - 1].gameID).eql(eEvent.gameID);
+          done();
+        });
     }
   };
   return givenApi;
@@ -118,7 +125,7 @@ function user(userName) {
       return action;
     },
     named: function(gameName) {
-      this.command.gamename = gameName;
+      this.command.gameName = gameName;
       return action;
     },
     joinsGame: function(gameID) {
