@@ -4,7 +4,8 @@ module.exports = function tictactoeCommandHandler(events) {
   var gameState = {
     gameCreatedEvent: events[0],
     winner: '',
-    board: [['','',''],['','',''],['','','']]
+    board: [['','',''],['','',''],['','','']],
+    gameID: undefined
   };
 
   for(var i = 0; i < events.length; i++) {
@@ -15,6 +16,7 @@ module.exports = function tictactoeCommandHandler(events) {
 
   var handlers = {
     "CreateGame": function(command) {
+      gameState.gameID = command.gameID;
       return [{
         eventID: command.eventID,
         gameID: command.gameID,
@@ -38,6 +40,7 @@ module.exports = function tictactoeCommandHandler(events) {
       return [{
         eventID: command.eventID,
         event: "GameJoined",
+        gameID: gameState.gameID,
         userName: command.userName,
         otherPlayerUserName: gameState.gameCreatedEvent.userName,
         gameName: command.gameName,
@@ -46,10 +49,11 @@ module.exports = function tictactoeCommandHandler(events) {
     },
 
     "Place": function(command) {
-      if(command.col > 2 || command.row > 2) {
+      if(command.col > 2 || command.col < 0 || command.row > 2 || command.col < 0) {
         return [{
           eventID: command.eventID,
           event: "IllegalMove",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -63,6 +67,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "IllegalMove",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -79,6 +84,7 @@ module.exports = function tictactoeCommandHandler(events) {
             return [{
               eventID: command.eventID,
               event: "NotYourTurn",
+              gameID: gameState.gameID,
               row: command.row,
               col: command.col,
               token: command.token,
@@ -96,6 +102,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "Placed",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -106,6 +113,7 @@ module.exports = function tictactoeCommandHandler(events) {
         {
           eventID: command.eventID,
           event: "GameOver",
+          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -118,6 +126,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "Placed",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -128,6 +137,7 @@ module.exports = function tictactoeCommandHandler(events) {
         {
           eventID: command.eventID,
           event: "GameOver",
+          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -140,6 +150,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "Placed",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -150,6 +161,7 @@ module.exports = function tictactoeCommandHandler(events) {
         {
           eventID: command.eventID,
           event: "GameOver",
+          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
           gameName: command.gameName,
@@ -161,6 +173,7 @@ module.exports = function tictactoeCommandHandler(events) {
         return [{
           eventID: command.eventID,
           event: "Placed",
+          gameID: gameState.gameID,
           row: command.row,
           col: command.col,
           token: command.token,
@@ -171,8 +184,32 @@ module.exports = function tictactoeCommandHandler(events) {
         {
           eventID: command.eventID,
           event: "GameOver",
+          gameID: gameState.gameID,
           token: command.token,
           winner: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        }];
+      }
+
+      if(boardFull(gameState.board)) {
+        return [{
+          eventID: command.eventID,
+          event: "Placed",
+          gameID: gameState.gameID,
+          row: command.row,
+          col: command.col,
+          token: command.token,
+          userName: command.userName,
+          gameName: command.gameName,
+          timeStamp: command.timeStamp
+        },
+        {
+          eventID: command.eventID,
+          event: "GameDrawn",
+          gameID: gameState.gameID,
+          token: command.token,
+          lastUser: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
         }];
@@ -181,6 +218,7 @@ module.exports = function tictactoeCommandHandler(events) {
       return [{
         eventID: command.eventID,
         event: "Placed",
+        gameID: gameState.gameID,
         row: command.row,
         col: command.col,
         token: command.token,
@@ -197,3 +235,14 @@ module.exports = function tictactoeCommandHandler(events) {
     }
   }
 };
+
+function boardFull(board) {
+  for(var i = 0; i < board.length; i++) {
+    for(var ii = 0; ii < board[i].length; ii++) {
+      if(board[i][ii] === '') {
+        return false;
+      }
+    }
+  }
+  return true;
+}
