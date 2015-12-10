@@ -131,6 +131,7 @@ module.exports = function (grunt) {
         src: [
           'server/**/*.js',
           '!server/**/*.acceptance.js',
+          '!server/**/*.load.js',
           '!server/**/*.spec.js'
         ]
       },
@@ -138,7 +139,11 @@ module.exports = function (grunt) {
         options: {
           jshintrc: 'server/.jshintrc-spec'
         },
-        src: ['server/**/*.spec.js']
+        src: [
+          'server/**/*.spec.js',
+          'server/**/*.acceptance.js',
+          'server/**/*.load.js'
+        ]
       },
       all: [
         '<%= yeoman.client %>/{app,components}/**/*.js',
@@ -448,6 +453,13 @@ module.exports = function (grunt) {
             captureFile: 'acceptance-tests'
           },
           src: ['server/**/*.acceptance.js']
+        },
+        load: {
+          options: {
+            reporter: process.env.MOCHA_REPORTER || 'spec',
+            captureFile: 'load-tests'
+          },
+          src: ['server/**/*.load.js']
         }
     },
 
