@@ -3,6 +3,10 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 
+echo Restarting docker instance on test machine
+echo
+ssh vagrant@192.168.50.4 'docker restart $(docker ps -q)'
+
 echo Exporting URL to the Server
 echo
 export ACCEPTANCE_URL=http://$1
