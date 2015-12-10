@@ -5,7 +5,9 @@ module.exports = function tictactoeCommandHandler(events) {
     gameCreatedEvent: events[0],
     winner: '',
     board: [['','',''],['','',''],['','','']],
-    gameID: undefined
+    gameID: events[0] && events[0].gameID,
+    playerOne: events[0] && events[0].userName,
+    playerTwo: events[1] && events[1].userName
   };
 
   for(var i = 0; i < events.length; i++) {
