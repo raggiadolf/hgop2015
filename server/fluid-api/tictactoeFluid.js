@@ -30,6 +30,7 @@ function given(event) {
       eEvent.userName = userName;
       return givenApi;
     },
+    /*jshint loopfunc: true */
     isOk: function(done) {
       for(var i = 0; i < commands.length; i++) {
         var req = request(acceptanceUrl);
