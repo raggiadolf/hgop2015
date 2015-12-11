@@ -6,6 +6,22 @@ var acceptanceUrl = process.env.ACCEPTANCE_URL;
 
 var uuid = require('node-uuid');
 
+function finish(done, commands, expectedEvent, compareResults) {
+  if(commands.length === 0) return compareResults(expectedEvent);
+
+  var cmd = commands.shift();
+
+  var req = request(acceptanceUrl);
+  req
+    .post(cmd.url)
+    .type('json')
+    .send(cmd)
+    .end(function(err, res) {
+      if(err) done(err);
+      finish(done, commands, expectedEvent, compareResults);
+    });
+}
+
 function given(event) {
   var eEvent = {
     name: event,
@@ -32,28 +48,19 @@ function given(event) {
     },
     /*jshint loopfunc: true */
     isOk: function(done) {
-      for(var i = 0; i < commands.length; i++) {
-        var req = request(acceptanceUrl);
-        req
-          .post(commands[i].url)
-          .type('json')
-          .send(commands[i])
-          .end(function(err, res) {
-            if(err) done(err);
-          });
-      }
-
-      var historyReq = request(acceptanceUrl);
-      historyReq
-        .get('/api/gameHistory/' + eEvent.gameID)
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(req, res) {
-          should(res.body[res.body.length - 1].event).eql(eEvent.name);
-          should(res.body[res.body.length - 1].userName).eql(eEvent.userName);
-          should(res.body[res.body.length - 1].gameID).eql(eEvent.gameID);
-          done();
-        });
+      finish(done, commands, eEvent, function(expectedEvent) {
+        var historyReq = request(acceptanceUrl);
+        historyReq
+          .get('/api/gameHistory/' + expectedEvent.gameID)
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .end(function(req, res) {
+            should(res.body[res.body.length - 1].event).eql(expectedEvent.name);
+            should(res.body[res.body.length - 1].userName).eql(expectedEvent.userName);
+            should(res.body[res.body.length - 1].gameID).eql(expectedEvent.gameID);
+            done();
+          })
+      });
     }
   };
   return givenApi;
