@@ -3,14 +3,14 @@
 var user = require('../fluid-api/tictactoeFluid').user;
 var given = require('../fluid-api/tictactoeFluid').given;
 
-it('Should play 1000 games in x seconds', function() {
+it('Should play 1000 games in x seconds', function(done) {
   var doneCount = 0;
-  var gamesToPlay = 250;
-  var x = 6;
+  var gamesToPlay = 200;
+  var x = 9.8;
 
   this.timeout(x * 1000);
 
-  var QED = function(done) {
+  var QED = function() {
     if (gamesToPlay === ++doneCount) {
       done();
     }
