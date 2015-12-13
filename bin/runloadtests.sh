@@ -10,6 +10,8 @@ ssh vagrant@192.168.50.4 'docker restart $(docker ps -q)'
 echo Exporting URL to the Server
 echo
 export ACCEPTANCE_URL=http://$1
+export MOCHA_REPORTER=xunit
+export MOCHA_REPORT=server-tests.xml
 
 echo Running load tests
 echo
