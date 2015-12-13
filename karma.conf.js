@@ -47,12 +47,12 @@ module.exports = function(config) {
       stripPrefix: 'client/'
     },
 
-    reporters: ['progress', 'junit'],
+    reporters: ['progress', 'junit', 'dots'],
 
     // the default configuration
     junitReporter: {
       outputDir: 'reports', // results will be saved as $outputDir/$browserName.xml
-      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      outputFile: 'test-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
       suite: '', // suite will become the packagen ame attribute in xml testsuite element
       useBrowserName: true // add browser name to report and classes names
     },
@@ -85,6 +85,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };
