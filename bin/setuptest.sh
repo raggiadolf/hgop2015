@@ -1,11 +1,13 @@
+echo Running revision $2 on port $1
+
 echo Removing containers from environment
 echo
-docker rm -f $(docker ps -aq)
+docker rm -f tictactoe$2
 
 echo Getting latest image from docker hub
 echo
-docker pull raggiadolf/tictactoe
+docker pull raggiadolf/tictactoe$2
 
 echo Running the docker container
 echo
-docker run -p 9001:8080 -d -e "NODE_ENV=production" raggiadolf/tictactoe
+docker run -p 8080:$1 -d --name tictactoe$2 -e "NODE_ENV=production" raggiadolf/tictactoe$2

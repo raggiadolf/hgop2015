@@ -1,3 +1,5 @@
+echo Deploy $3 to http://$1:$2
+
 if [ "$1" == "" ]; then
   echo Please include ip of the server as a parameter
   exit 1
@@ -13,4 +15,4 @@ docker push raggiadolf/tictactoe
 
 echo Docker image pushed to repo, sending setup script to test machine.
 echo
-ssh vagrant@$1 'bash -s' < bin/setuptest.sh
+ssh vagrant@$1 'bash -s' < bin/setuptest.sh $2 $3
