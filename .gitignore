@@ -12,3 +12,5 @@ reports/
 server-tests
 acceptance-tests
 load-tests
+typings/
+tsd.json
