@@ -39,4 +39,7 @@ npm install --production || exit $?
 echo Building docker image
 docker build -t raggiadolf/tictactoe:$GIT_COMMIT . || exit $?
 
+echo Pushing docker image to Docker hub
+docker push raggiadolf/tictactoe:$GIT_COMMIT || exit $?
+
 echo "Done"

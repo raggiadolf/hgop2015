@@ -9,10 +9,6 @@ echo Starting the docker service
 echo
 sudo service docker start
 
-echo Pushing the image to docker hub
-echo
-docker push raggiadolf/tictactoe
-
 echo Docker image pushed to repo, sending setup script to test machine.
 echo
 ssh vagrant@$1 'bash -s' < bin/setuptest.sh $2 $3
