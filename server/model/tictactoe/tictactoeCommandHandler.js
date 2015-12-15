@@ -61,6 +61,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "IllegalMove",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -74,6 +75,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "IllegalMove",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -90,6 +92,7 @@ module.exports = function tictactoeCommandHandler(events) {
             event: "NotYourTurn",
             row: command.row,
             col: command.col,
+            side: token,
             userName: command.userName,
             gameName: command.gameName,
             timeStamp: command.timeStamp
@@ -107,6 +110,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -129,6 +133,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -151,6 +156,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -172,6 +178,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -193,6 +200,7 @@ module.exports = function tictactoeCommandHandler(events) {
           event: "Placed",
           row: command.row,
           col: command.col,
+          side: token,
           userName: command.userName,
           gameName: command.gameName,
           timeStamp: command.timeStamp
@@ -213,6 +221,7 @@ module.exports = function tictactoeCommandHandler(events) {
         event: "Placed",
         row: command.row,
         col: command.col,
+        side: token,
         userName: command.userName,
         gameName: command.gameName,
         timeStamp: command.timeStamp

@@ -44,6 +44,7 @@ describe('place token command', function() {
       event: "Placed",
       row: 0,
       col: 0,
+      side: 'X',
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T12:56:44"
@@ -72,6 +73,7 @@ describe('place token command', function() {
       event: "IllegalMove",
       row: 0,
       col: 3,
+      side: 'X',
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:03:44"
@@ -111,6 +113,7 @@ describe('place token command', function() {
       event: "IllegalMove",
       row: 1,
       col: 1,
+      side: 'O',
       userName: "Adolf",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21:28:17"
@@ -150,6 +153,7 @@ describe('place token command', function() {
       event: "NotYourTurn",
       row: 0,
       col: 1,
+      side: 'X',
       userName: "Raggi",
       gameName: "TestGame",
       timeStamp: "2015.12.03T21.30:39"
@@ -220,6 +224,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 0,
+        side: 'X',
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.30:39"
@@ -297,6 +302,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 0,
         col: 2,
+        side: 'X',
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.32:39"
@@ -374,6 +380,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 2,
+        side: 'X',
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
@@ -493,6 +500,7 @@ describe('place token command', function() {
         event: "Placed",
         row: 2,
         col: 1,
+        side: 'X',
         userName: "Raggi",
         gameName: "TestGame",
         timeStamp: "2015.12.03T21.38:39"
