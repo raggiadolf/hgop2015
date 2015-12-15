@@ -26,3 +26,31 @@ Upprunalega skrifaði ég fluid API testið þannig að það forceaði fyrirspu
 Það að færa push úr deployment scriptunni gefur okkur 'separation of concern' og auðveldar okkur að endurnýta scriptuna fyrir mörg umhverfi. Með þessu móti þá pushum við docker buildinu bara einu sinni, en getum deployað á mörg umhverfi án þess að pusha oft.
 
 GIT_COMMIT breytan heldur utan um SHA id-ið á committunum, sem gefur okkur eintækt ID fyrir hvert commit. Við notum þetta ID til að tagga docker containerana okkar, sem við getum síðan notað til að sækja hverja og einustu útgáfu til að deploya.
+##Jenkins
+###CommitStage
+```
+export PATH=$PATH:/usr/local/bin
+export DISPLAY=:0
+export MOCHA_REPORTER=xunit
+export MOCHA_REPORT=server-tests.xml
+cd /home/vagrant/src/tictactoe
+npm install
+bower install
+sudo chkconfig docker on
+./bin/dockerbuild.sh $GIT_COMMIT
+cp dist/githash.txt $WORKSPACE
+```
+###AcceptanceStage
+```
+export PATH=$PATH:/usr/local/bin
+export GIT_UPSTREAM_HASH=$(cat githash.txt)
+cd /home/vagrant/src/tictactoe
+./bin/deployment.sh 192.168.50.4 9001 $GIT_UPSTREAM_HASH
+./bin/runacceptancetests.sh 192.168.50.4:9001
+```
+###CapacityStage
+```
+export PATH=$PATH:/usr/local/bin
+cd /home/vagrant/src/tictactoe
+./bin/runloadtests.sh 192.168.50.4:9001
+```
