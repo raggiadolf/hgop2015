@@ -65,8 +65,8 @@ describe('Controller: JoinGameCtrl', function() {
     httpBackend.expectGET('app/tictactoeController/tictactoe.html').respond('');
     httpBackend.flush();
     
-    expect(location.search().gameSide.toBe('O'));
+    expect(location.search().gameSide).toBe('O');
     expect(location.search().gameID).toBe('123');
-    epxect(location.path()).toBe('/tictactoe');
+    expect(location.path()).toBe('/tictactoe');
   });
 });
