@@ -5,6 +5,16 @@ describe('Controller: TictactoeControllerCtrl', function() {
   
   var TictactoeControllerCtrl, scope, httpBackend, http, location, interval;
   
+  beforeEach(function() {
+    module(function($provide) {
+      var guids = ['987', '1234'];
+      
+      $provide.value('guid', function() {
+        return guids.pop();
+      });
+    });
+  });
+  
   // Initialize the contorller and a mock scope
   beforeEach(inject(function($injector, $controller, $rootScope, $http, $location, $interval) {
     http = $http;
@@ -30,16 +40,12 @@ describe('Controller: TictactoeControllerCtrl', function() {
       event: 'GameCreated',
       gameName: 'Game Number One',
       gameID: '123',
-      user: {
-        userName: 'Creator'
-      }
+      userName: 'Creator'
     }, {
       event: 'GameJoined',
       gameName: 'Game Number One',
       gameID: '123',
-      user: {
-        userName: 'Joiner'
-      }
+      userName: 'Joiner'
     }]);
     httpBackend.flush();
   }
@@ -53,7 +59,7 @@ describe('Controller: TictactoeControllerCtrl', function() {
   it('should init creator to side X', function() {
     getHistory();
     
-    expect(scope.me.userName).toBe('Creator');
+    expect(scope.me).toBe('Creator');
   });
   
   it('should init joiner to side O', function() {
@@ -61,34 +67,29 @@ describe('Controller: TictactoeControllerCtrl', function() {
     
     getHistory();
     
-    expect(scope.me.userName).toBe('Joiner');
+    expect(scope.me).toBe('Joiner');
   });
   
   it('should post side from current user X', function() {
     getHistory();
     
     httpBackend.expectPOST('/api/placeMove/', {
+      eventID: '1234',
       gameID: '87687',
-      command: 'PlaceMove',
-      user: {
-        userName: 'Raggi'
-      },
+      command: 'Place',
+      userName: 'Raggi',
       timeStamp: '2015.12.15T10:07:29',
-      move: {
-        xy: {x: 2, y: 0},
-        side: 'X'
-      }
+      row: 2,
+      col: 0
     }).respond([
       {
-        event: 'MovePlaced',
-        user: {
-          userName: 'Raggi'
-        },
+        eventID: '1234',
+        event: 'Placed',
+        userName: 'Raggi',
         timeStamp: '2015.12.15T10:07:29',
-        move: {
-          xy: {x: 2, y: 0},
-          side: 'X'
-        }
+        row: 2,
+        col: 0,
+        side: 'X'
       }
     ]);
     
@@ -99,38 +100,33 @@ describe('Controller: TictactoeControllerCtrl', function() {
     scope.me = {userName: 'Raggi'};
     scope.gameState.gameID = '87687';
     
-    scope.placeMove({x: 2, y: 0});
+    scope.placeMove([2,0]);
     httpBackend.flush();
     
     expect(scope.myTurn()).toBe(false);
   });
   
-  it('should post side from current usser O', function() {
+  it('should post side from current user O', function() {
     location.search('gameSide', 'O');
     
     getHistory();
     httpBackend.expectPOST('/api/placeMove/', {
+      eventID: '1234',
       gameID: '87687',
-      command: 'PlaceMove',
-      user: {
-        userName: 'Raggi'
-      },
+      command: 'Place',
+      userName: 'Adolf',
       timeStamp: '2015.12.15T10:07:29',
-      move: {
-        xy: {x: 2, y: 1},
-        side: 'O'
-      }
+      row: 2,
+      col: 1,
     }).respond([
       {
-        event: 'MovePlaced',
-        user: {
-          userName: 'Gummi'
-        },
+        eventID: '1234',
+        event: 'Placed',
+        userName: 'Adolf',
         timeStamp: '2015.12.15T10:07:29',
-        move: {
-          xy: {x: 2, y: 1},
-          side: 'O'
-        }
+        row: 2,
+        col: 1,
+        side: 'O'
       }
     ]);
     
@@ -138,10 +134,10 @@ describe('Controller: TictactoeControllerCtrl', function() {
     scope.name = 'TheSecondGame';
     scope.gameState.nextTurn = 'O';
     
-    scope.me = {userName: 'Raggi'};
+    scope.me = {userName: 'Adolf'};
     scope.gameState.gameID = '87687';
     
-    scope.placeMove({x: 2, y: 1});
+    scope.placeMove([2,1]);
     httpBackend.flush();
     
     expect(scope.myTurn()).toBe(false);

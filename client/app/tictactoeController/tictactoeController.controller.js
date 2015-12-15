@@ -44,15 +44,15 @@ angular.module('tictactoeApp')
       if(!$scope.myTurn()) {
         return;
       }
+      var eventID = guid();
       thenHandleEvents($http.post('/api/placeMove/', {
+        eventID: eventID,
         gameID: $scope.gameState.gameID,
-        command: 'PlaceMove',
-        user: $scope.me,
+        command: 'Place',
+        userName: $scope.me.userName,
         timeStamp: '2015.12.15T10:07:29',
-        move: {
-          xy: coords,
-          side: mySide()
-        }
+        row: coords[0],
+        col: coords[1]
       }));
     };
   });
