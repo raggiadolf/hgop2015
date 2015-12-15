@@ -14,44 +14,37 @@ describe('Factory: TicTacToeState', function() {
   it('Should add other player to game state when gameJoined', function() {
     gameState.mutate([{
       event: 'GameJoined',
-      user: {
-        userName: 'Adolf'
-      },
+      userName: 'Adolf',
       gameName: 'TheFirstGame',
       timeStamp: '2015.12.14T18:24:30'
     }]);
     
-    expect(gameState.joiningUser.userName).toBe('Adolf');
+    expect(gameState.joiningUser).toBe('Adolf');
   });
   
   it('Should store gameid and name from game created in game state.', function() {
     gameState.mutate([{
       event: 'GameCreated',
       gameID: '198299',
-      user: {
-        userName: 'Raggi'
-      },
+      userName: 'Raggi',
       gameName: 'TheSecondGame',
       timeStamp: '2015.12.14T18:28:18'
     }]);
     
     expect(gameState.gameID).toBe('198299');
     expect(gameState.gameName).toBe('TheSecondGame');
-    expect(gameState.creatingUser.userName).toBe('Raggi');
+    expect(gameState.creatingUser).toBe('Raggi');
   });
   
   it('Should add moves 0,1 to game board', function() {
     gameState.mutate([{
-      event: 'MovePlaced',
-      user: {
-        userName: 'Raggi'
-      },
+      event: 'Placed',
+      userName: 'Raggi',
       gameName: 'TheThirdGame',
       timeStamp: '2015.12.14T18:31:10',
-      move: {
-        xy: {x: 0, y: 1},
-        side: 'X'
-      }
+      row: 0,
+      col: 1,
+      side: 'X'
     }]);
     
     expect(gameState.board[0][1]).toBe('X');
@@ -59,16 +52,13 @@ describe('Factory: TicTacToeState', function() {
   
   it('Should add move 2,2 to board.', function() {
     gameState.mutate([{
-      event: 'MovePlaced',
-      user: {
-        userName: 'Adolf'
-      },
+      event: 'Placed',
+      userName: 'Adolf',
       gameName: 'TheFourthGame',
       timeStamp: '2015.12.14T18:33:19',
-      move: {
-        xy: {x: 2, y: 2},
-        side: 'X'
-      }
+      row: 2,
+      col: 2,
+      side: 'X'
     }]);
     
     expect(gameState.board[2][2]).toBe('X');
@@ -77,16 +67,13 @@ describe('Factory: TicTacToeState', function() {
   it('Should mark next turn as opposite from last event', function() {
     gameState.me = {side: 'O'};
     gameState.mutate([{
-      event: 'MovePlaced',
-      user: {
-        userName: 'Raggi'
-      },
+      event: 'Placed',
+      userName: 'Raggi',
       gamename: 'TheFifthGame',
       timeStamp: '2015.12.14T18:35:45',
-      move: {
-        xy: {x: 2, y: 2},
-        side: 'X'
-      }
+      row: 2,
+      col: 2,
+      side: 'X'
     }]);
     
     expect(gameState.nextTurn).toBe('O');
@@ -96,9 +83,7 @@ describe('Factory: TicTacToeState', function() {
     gameState.me = {side: 'X'};
     gameState.mutate([{
       event: 'GameCreated',
-      user: {
-        userName: 'Raggi'
-      },
+      userName: 'Raggi',
       gameName: 'TheSixthGame',
       timeStamp: '2015.12.14T18:36:39'
     }]);
@@ -109,25 +94,21 @@ describe('Factory: TicTacToeState', function() {
   it('GameWon should set nextTurn to GameOver', function() {
     gameState.me = {side: 'X'};
     gameState.mutate([{
-      event: 'GameWon',
-      user: {
-        userName: 'Raggi'
-      },
+      event: 'GameOver',
+      winner: 'Raggi',
       gameName: 'TheSeventhGame',
       timeStamp: '2015.12.14T18:38:16'
     }]);
     
     expect(gameState.nextTurn).toBe('GameOver');
-    expect(gameState.winner.userName).toBe('Raggi');
+    expect(gameState.winner).toBe('Raggi');
   });
   
   it('GameDraw should set nextTurn to GameOver', function() {
     gameState.me = {side: 'X'};
     gameState.mutate([{
-      event: 'GameDraw',
-      user: {
-        userName: 'Raggi'
-      },
+      event: 'GameDrawn',
+      userName: 'Raggi',
       gameName: 'TheEightGame',
       timeStamp: '2015.12.14T18:40:29'
     }]);
