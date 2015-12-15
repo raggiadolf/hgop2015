@@ -49,7 +49,7 @@ angular.module('tictactoeApp')
         eventID: eventID,
         gameID: $scope.gameState.gameID,
         command: 'Place',
-        userName: $scope.me.userName,
+        userName: $scope.me,
         timeStamp: '2015.12.15T10:07:29',
         row: coords[0],
         col: coords[1]

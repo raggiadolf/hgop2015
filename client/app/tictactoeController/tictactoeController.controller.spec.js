@@ -97,7 +97,7 @@ describe('Controller: TictactoeControllerCtrl', function() {
     scope.name = 'TheSecondGame';
     
     location.search('gameSide', 'X');
-    scope.me = {userName: 'Raggi'};
+    scope.me = 'Raggi';
     scope.gameState.gameID = '87687';
     
     scope.placeMove([2,0]);
@@ -134,7 +134,7 @@ describe('Controller: TictactoeControllerCtrl', function() {
     scope.name = 'TheSecondGame';
     scope.gameState.nextTurn = 'O';
     
-    scope.me = {userName: 'Adolf'};
+    scope.me = 'Adolf';
     scope.gameState.gameID = '87687';
     
     scope.placeMove([2,1]);
