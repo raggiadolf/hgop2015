@@ -9,8 +9,8 @@
   </div>
   
   <div ng-hide="gameState.winner || gameState.gameDraw">
-    <div ng-class="{myturn:myTurn()}">Me: <span id="myname">{{ me.userName }}</span> - {{ me.side }}</div>
-    <div ng-class="{notmyturn:!myTurn()}">Opponent: <span id="opponentName">{{ other.userName }}</span> - {{ other.side}} </div>
+    <div ng-class="{myturn:myTurn()}">Me: <span id="myname">{{ me }}</span></div>
+    <div ng-class="{notmyturn:!myTurn()}">Opponent: <span id="opponentName">{{ other }}</span></div>
   </div>
   
   <div ng-class="{'winner':gameState.winner}" ng-show="gameState.winner">
