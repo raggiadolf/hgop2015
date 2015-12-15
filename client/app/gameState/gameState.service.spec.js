@@ -134,5 +134,5 @@ describe('Factory: TicTacToeState', function() {
     
     expect(gameState.nextTurn).toBe('GameOver');
     expect(gameState.gameDraw).toBe(true);
-  })
+  });
 });
