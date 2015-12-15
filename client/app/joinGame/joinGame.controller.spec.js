@@ -35,7 +35,7 @@ describe('Controller: JoinGameCtrl', function() {
   it('should ask to join game if game id already in scope, and assign me to O', function() {
     httpBackend.expectGET('/api/gameHistory/123').respond([{
       event: 'GameCreated',
-      name: 'Game Number One',
+      gameName: 'Game Number One',
       gameID: '123',
       eventID: '6543'
     }]);
@@ -49,10 +49,7 @@ describe('Controller: JoinGameCtrl', function() {
       eventID: '1234',
       gameID: '123',
       command: 'JoinGame',
-      user: {
-        userName: 'Raggi',
-        side: 'O'
-      },
+      userName: 'Raggi',
       timeStamp: '2015.12.14T22:04:03'
     }).respond([
       {event: 'GameJoined'}
