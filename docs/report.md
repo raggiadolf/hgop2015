@@ -23,4 +23,6 @@ Upprunalega skrifaði ég fluid API testið þannig að það forceaði fyrirspu
 Það að geta rakið útgáfur og deployað hvaða útgáfu sem er gefur okkur möguleikann á því að bakka og deploya eldri útgáfu ef upp koma t.d. villur eða aðrar ástæður sem gera núverandi útgáfu óstöðuna á einhvern hátt. Einnig geta testarar deployað eldri útgáfum til að reyna að reproducea einhverja galla sem við/kúnninn finnur.
 Það gæti líka á einhvern máta leyft okkur að útgáfustýra deployments til kúnna, ef nýir fídusar brjóta eitthvað ákveðið ferli hjá tilteknum kúnna, þá höfum við ennþá möguleikann á að halda eldri útgáfu hjá honum, en getum deployað nýrri útgáfum annað.
 
-GIT_COMMIT breytan heldur utan um SHA id-ið á committunum, sem gefur okkur eintækt ID fyrir hvert commit, og þær upplýsingar sem þarf til að geta deployað hvaða útgáfu sem er.
+Það að færa push úr deployment scriptunni gefur okkur 'separation of concern' og auðveldar okkur að endurnýta scriptuna fyrir mörg umhverfi. Með þessu móti þá pushum við docker buildinu bara einu sinni, en getum deployað á mörg umhverfi án þess að pusha oft.
+
+GIT_COMMIT breytan heldur utan um SHA id-ið á committunum, sem gefur okkur eintækt ID fyrir hvert commit. Við notum þetta ID til að tagga docker containerana okkar, sem við getum síðan notað til að sækja hverja og einustu útgáfu til að deploya.
