@@ -1,6 +1,6 @@
 <div class="container">
   
-  <h3>Game on - {{ gameState.name || 'NoName' }}</h3>
+  <h3>Game on - {{ gameState.gameName || 'NoName' }}</h3>
   
   <span>{{ gameState | json }}</span>
   
@@ -14,7 +14,7 @@
   </div>
   
   <div ng-class="{'winner':gameState.winner}" ng-show="gameState.winner">
-    {{ gameState.winner.userName }} - {{ gameState.winner.side }} WINS!
+    {{ gameState.winner }} WINS!
   </div>
   
   <div class="draw" ng-show="gameState.gameDraw">
