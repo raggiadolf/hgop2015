@@ -54,3 +54,4 @@ export PATH=$PATH:/usr/local/bin
 cd /home/vagrant/src/tictactoe
 ./bin/runloadtests.sh 192.168.50.4:9001
 ```
+Since my capacity stage only ran strictly after the acceptance stage, I do not deploy again and assume that the correct version is deployed. This would obviously need changing if we're f.ex. only running Capacity tests and no Acceptance tests.
