@@ -9,7 +9,6 @@ angular.module('tictactoeApp')
     };
     
     $scope.gameState = gameState();
-    // var gameID = $location.search().gameID;
     
     thenHandleEvents($http.get('/api/gameHistory/' + $state.params.gameID));
     
